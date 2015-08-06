@@ -1,15 +1,58 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicModal) {
 
+    
   
 })
 
-.controller('SpeakersCtrl',  ['$scope', '$http', '$state',
-  function($scope, $http, $state) {
+.controller('SpeakersCtrl',  ['$scope', '$http', '$state', "$ionicModal",
+  function($scope, $http, $state, $ionicModal) {
+
+    $ionicModal.fromTemplateUrl('templates/speaker.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+      });
+      $scope.openModal = function() {
+        $scope.modal.show();
+      };
+      $scope.closeModal = function() {
+        $scope.modal.hide();
+      };
+      //Cleanup the modal when we're done with it!
+      $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+      });
+      // Execute action on hide modal
+      $scope.$on('modal.hidden', function() {
+        // Execute action
+      });
+      // Execute action on remove modal
+      $scope.$on('modal.removed', function() {
+        // Execute action
+      });
 
     $http.get('js/data.json').success(function(data) {
       $scope.speakers = data.speakers;
+
+
+      function chunk(arr, size) {
+        var newArr = [];
+        for (var i=0; i<arr.length; i+=size) {
+          newArr.push(arr.slice(i, i+size));
+        }
+        return newArr;
+      }
+
+      $scope.chunkedData = chunk(data.speakers, 2);
+
+      $scope.whichartist= $state.params.speakersId;
+
+
+
+      
       
       /*
       $scope.whichartist=$state.params.aId;
@@ -38,6 +81,11 @@ angular.module('starter.controllers', [])
 
     });
 
+
+    
+
+    
+
 /*
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
@@ -52,5 +100,10 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('SpeakerCtrl', function($scope, $stateParams) {
+
+
+.controller('SpeakerCtrl', function($scope, $stateParams, $ionicModal) {
+
+  
+
 });

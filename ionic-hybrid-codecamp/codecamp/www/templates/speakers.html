@@ -1,12 +1,63 @@
-<ion-view view-title="Speakers">
+<ion-view view-title="Speakers" >
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="speaker in speakers" href="#/app/speakers/{{speakers.id}}"
-      class="item-thumbnail-left ">
-      <img ng-src="img/{{speaker.shortname}}_tn.jpg"
-        alt="{{ speaker.name }} Photo">
-        {{speaker.name}}
+    <ion-list   >
+      
+      <ion-item ng-repeat="row in chunkedData "   >        
+        <ion-list >
+          <div class="row">          
+            <ion-item class="col col-50" ng-repeat="speaker in row " 
+            ng-click="openModal()"   >
+
+              <div class=" item-image">
+                <img class="full-image" ng-src="img/{{speaker.shortname}}_tn.jpg"
+                 alt="{{ speaker.name }} Photo" >
+              </div>
+              <h4>{{speaker.name}}</h4>
+
+            </ion-item>            
+          </div>
+        </ion-list>
+        
       </ion-item>
+
+      <!-- 
+      href="#/app/speakers/{{speaker.id}}"
+      <ion-item ng-repeat="row in speakers " href="#/app/speakers/{{speakers.id}}"
+      class="" ng-switch on="$index % 2">
+      
+        <div class="row">
+          
+          <div class="col col-50 " ng-switch-when="0">
+            
+      
+            <ion-item class="item-image">
+      
+              <img ng-src="img/{{speakers[$index].shortname}}_tn.jpg" alt="{{ speakers[$index].name }} Photo" >
+              <h2>{{speakers[$index].name}}</h2>
+              
+            </ion-item>  
+      
+            
+      
+          </div>
+          
+          <div class="col col-50 " ng-switch-when="0" >
+            
+            <ion-item class="item-image">
+      
+              <img ng-src="img/{{speakers[$index+1].shortname}}_tn.jpg" alt="{{ speakers[$index+1].name }} Photo" >
+              <h2>{{speakers[$index+1].name}}</h2>
+              
+            </ion-item>          
+      
+          </div>
+      
+        </div>
+      
+      </ion-item>  -->
+
+
+      
     </ion-list>
   </ion-content>
 </ion-view>

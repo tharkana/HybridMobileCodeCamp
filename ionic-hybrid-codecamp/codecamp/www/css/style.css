@@ -1,1 +1,19 @@
 /* Empty. Add your own CSS if you like */
+
+.speakers {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 680px) {
+  .mymodal {  
+     width: 90% ; 
+     height: 50% !important; 
+     top: 20%; 
+     left: 5%; 
+     right: 5%; 
+     bottom: 10%;
+     min-height: initial !important;
+     background: blue;
+  }
+}
